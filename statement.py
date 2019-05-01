@@ -67,10 +67,10 @@ def statement(invoice, plays):
         result['volumeCredits'] = volumeCreditsFor(result)
         return result
 
-    statement = {}
-    statement['customer'] = invoice['customer']
-    statement['performances'] = list(map(enrichPerformance, invoice['performances']))
-    return renderPlainText(statement, plays)
+    statementData = {}
+    statementData['customer'] = invoice['customer']
+    statementData['performances'] = list(map(enrichPerformance, invoice['performances']))
+    return renderPlainText(statementData, plays)
 
 with open("plays.json", "r") as plays_file:
     plays = json.load(plays_file)
