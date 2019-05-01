@@ -1,5 +1,6 @@
 import json
 import math
+import copy
 from babel.numbers import format_currency
 
 def renderPlainText(data, plays):
@@ -60,9 +61,13 @@ def renderPlainText(data, plays):
     return result
 
 def statement(invoice, plays):
+    def enrichPerformance(aPerformance):
+        result = copy.deepcopy(aPerformance)
+        return result
+
     statement = {}
     statement['customer'] = invoice['customer']
-    statement['performances'] = invoice['performances']
+    statement['performances'] = list(map(enrichPerformance, invoice['performances']))
     return renderPlainText(statement, plays)
 
 with open("plays.json", "r") as plays_file:
@@ -70,6 +75,5 @@ with open("plays.json", "r") as plays_file:
 
 with open("invoices.json", "r") as invoices_file:
     invoices = json.load(invoices_file)
-
 
 print(statement(invoices[0], plays))
