@@ -1,6 +1,8 @@
 import json
 import math
 import copy
+import functools
+import operator
 from babel.numbers import format_currency
 
 def renderPlainText(data, plays):
@@ -56,16 +58,12 @@ def statement(invoice, plays):
         return result
 
     def totalVolumeCredits(data):
-        result = 0
-        for perf in data['performances']:
-            result += perf['volumeCredits']
-        return result
+        return functools.reduce(
+            lambda total, p: total + p['volumeCredits'], data['performances'], 0)
 
     def totalAmount(data):
-        result = 0
-        for perf in data['performances']:
-            result += perf['amount']
-        return result
+        return functools.reduce(
+            lambda total, p: total + p['amount'], data['performances'], 0)
 
     statementData = {}
     statementData['customer'] = invoice['customer']
