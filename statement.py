@@ -26,16 +26,20 @@ def statement(invoice, plays):
     def playFor(aPerformance):
         return plays[aPerformance['playID']]
 
+    def volumeCreditsFor(perf):
+        volumeCredits = 0
+        volumeCredits += max(perf['audience'] - 30, 0)
+        if "comedy" == playFor(perf)['type']:
+            volumeCredits += math.floor(perf['audience'] / 5)
+        return volumeCredits
+
     totalAmount = 0
     volumeCredits = 0
     result = f"Statement for {invoice['customer']}\n"
 
     for perf in invoice['performances']:
         # add volume credits
-        volumeCredits += max(perf['audience'] - 30, 0)
-        # add extra credit for every ten comedy attendees
-        if "comedy" == playFor(perf)['type']:
-            volumeCredits += math.floor(perf['audience'] / 5)
+        volumeCredits += volumeCreditsFor(perf)
 
         # print line for this order
         result += f"  {playFor(perf)['name']}: {format_currency(amountFor(perf)/100, 'USD', locale='en_US')} ({perf['audience']} seats)\n"
