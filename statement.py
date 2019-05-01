@@ -4,14 +4,10 @@ from babel.numbers import format_currency
 
 def statement(invoice, plays):
     """Prints a statement"""
-    totalAmount = 0
-    volumeCredits = 0
-    result = f"Statement for {invoice['customer']}\n"
 
-    for perf in invoice['performances']:
-        play = plays[perf['playID']]
+    def amountFor(perf, play):
+        """Calculate amount for the given performance"""
         thisAmount = 0
-
         if play['type'] == "tragedy":
             thisAmount = 40000
             if perf['audience'] > 30:
@@ -25,6 +21,15 @@ def statement(invoice, plays):
         
         else:
             raise RuntimeError(f"unknown type: {play['type']}")
+        return thisAmount
+
+    totalAmount = 0
+    volumeCredits = 0
+    result = f"Statement for {invoice['customer']}\n"
+
+    for perf in invoice['performances']:
+        play = plays[perf['playID']]
+        thisAmount = amountFor(perf, play)
 
         # add volume credits
         volumeCredits += max(perf['audience'] - 30, 0)
@@ -39,9 +44,6 @@ def statement(invoice, plays):
     result += f"Amount owed is {format_currency(totalAmount/100, 'USD', locale='en_US')}\n"
     result += f"You earned {volumeCredits} credits\n"
     return result
-
-
-
 
 
 with open("plays.json", "r") as plays_file:
