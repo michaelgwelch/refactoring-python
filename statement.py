@@ -51,9 +51,8 @@ def statement(invoice, plays):
         result += f"  {playFor(perf)['name']}: {usd(amountFor(perf))} ({perf['audience']} seats)\n"
         totalAmount += amountFor(perf)
 
-    volumeCredits = totalVolumeCredits()
     result += f"Amount owed is {usd(totalAmount)}\n"
-    result += f"You earned {volumeCredits} credits\n"
+    result += f"You earned {totalVolumeCredits()} credits\n"
     return result
 
 
