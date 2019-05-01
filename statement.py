@@ -2,7 +2,7 @@ import json
 import math
 from babel.numbers import format_currency
 
-def renderPlainText(data, invoice, plays):
+def renderPlainText(data, plays):
     """Render a statement in plain text and return the value"""
 
     def amountFor(aPerformance):
@@ -38,20 +38,20 @@ def renderPlainText(data, invoice, plays):
 
     def totalVolumeCredits():
         result = 0
-        for perf in invoice['performances']:
+        for perf in data['performances']:
             # add volume credits
             result += volumeCreditsFor(perf)
         return result
 
     def totalAmount():
         result = 0
-        for perf in invoice['performances']:
+        for perf in data['performances']:
             result += amountFor(perf)
         return result
 
     result = f"Statement for {data['customer']}\n"
 
-    for perf in invoice['performances']:
+    for perf in data['performances']:
         # print line for this order
         result += f"  {playFor(perf)['name']}: {usd(amountFor(perf))} ({perf['audience']} seats)\n"
 
@@ -62,7 +62,8 @@ def renderPlainText(data, invoice, plays):
 def statement(invoice, plays):
     statement = {}
     statement['customer'] = invoice['customer']
-    return renderPlainText(statement, invoice, plays)
+    statement['performances'] = invoice['performances']
+    return renderPlainText(statement, plays)
 
 with open("plays.json", "r") as plays_file:
     plays = json.load(plays_file)
