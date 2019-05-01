@@ -5,19 +5,19 @@ from babel.numbers import format_currency
 def statement(invoice, plays):
     """Prints a statement"""
 
-    def amountFor(perf, play):
+    def amountFor(aPerformance, play):
         """Calculate amount for the given performance"""
         result = 0
         if play['type'] == "tragedy":
             result = 40000
-            if perf['audience'] > 30:
-                result += 1000 * (perf['audience'] - 30)
+            if aPerformance['audience'] > 30:
+                result += 1000 * (aPerformance['audience'] - 30)
         
         elif play['type'] == "comedy":
             result = 30000
-            if perf['audience'] > 20:
-                result += 10000 + 500 * (perf['audience'] - 20)
-            result += 300 * perf['audience']
+            if aPerformance['audience'] > 20:
+                result += 10000 + 500 * (aPerformance['audience'] - 20)
+            result += 300 * aPerformance['audience']
         
         else:
             raise RuntimeError(f"unknown type: {play['type']}")
