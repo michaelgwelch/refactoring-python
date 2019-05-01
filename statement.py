@@ -5,7 +5,7 @@ from babel.numbers import format_currency
 def statement(invoice, plays):
     """Prints a statement"""
 
-    def amountFor(aPerformance, play):
+    def amountFor(aPerformance):
         """Calculate amount for the given performance"""
         result = 0
         if playFor(aPerformance)['type'] == "tragedy":
@@ -31,7 +31,7 @@ def statement(invoice, plays):
     result = f"Statement for {invoice['customer']}\n"
 
     for perf in invoice['performances']:
-        thisAmount = amountFor(perf, playFor(perf))
+        thisAmount = amountFor(perf)
 
         # add volume credits
         volumeCredits += max(perf['audience'] - 30, 0)
