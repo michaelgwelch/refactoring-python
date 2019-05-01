@@ -49,7 +49,7 @@ def renderPlainText(data, invoice, plays):
             result += amountFor(perf)
         return result
 
-    result = f"Statement for {invoice['customer']}\n"
+    result = f"Statement for {data['customer']}\n"
 
     for perf in invoice['performances']:
         # print line for this order
@@ -61,6 +61,7 @@ def renderPlainText(data, invoice, plays):
 
 def statement(invoice, plays):
     statement = {}
+    statement['customer'] = invoice['customer']
     return renderPlainText(statement, invoice, plays)
 
 with open("plays.json", "r") as plays_file:
