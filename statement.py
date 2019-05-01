@@ -9,26 +9,14 @@ def renderPlainText(data, plays):
     def usd(aNumber):
         return format_currency(aNumber/100, "USD", locale="en_US")
 
-    def totalVolumeCredits():
-        result = 0
-        for perf in data['performances']:
-            result += perf['volumeCredits']
-        return result
-
-    def totalAmount():
-        result = 0
-        for perf in data['performances']:
-            result += perf['amount']
-        return result
-
     result = f"Statement for {data['customer']}\n"
 
     for perf in data['performances']:
         # print line for this order
         result += f"  {perf['play']['name']}: {usd(perf['amount'])} ({perf['audience']} seats)\n"
 
-    result += f"Amount owed is {usd(totalAmount())}\n"
-    result += f"You earned {totalVolumeCredits()} credits\n"
+    result += f"Amount owed is {usd(data['totalAmount'])}\n"
+    result += f"You earned {data['totalVolumeCredits']} credits\n"
     return result
 
 def statement(invoice, plays):
@@ -67,9 +55,23 @@ def statement(invoice, plays):
         result['volumeCredits'] = volumeCreditsFor(result)
         return result
 
+    def totalVolumeCredits(data):
+        result = 0
+        for perf in data['performances']:
+            result += perf['volumeCredits']
+        return result
+
+    def totalAmount(data):
+        result = 0
+        for perf in data['performances']:
+            result += perf['amount']
+        return result
+
     statementData = {}
     statementData['customer'] = invoice['customer']
     statementData['performances'] = list(map(enrichPerformance, invoice['performances']))
+    statementData['totalAmount'] = totalAmount(statementData)
+    statementData['totalVolumeCredits'] = totalVolumeCredits(statementData)
     return renderPlainText(statementData, plays)
 
 with open("plays.json", "r") as plays_file:
