@@ -6,21 +6,13 @@ from babel.numbers import format_currency
 def renderPlainText(data, plays):
     """Render a statement in plain text and return the value"""
 
-    def volumeCreditsFor(aPerformance):
-        result = 0
-        result += max(aPerformance['audience'] - 30, 0)
-        if "comedy" == aPerformance['play']['type']:
-            result += math.floor(aPerformance['audience'] / 5)
-        return result
-
     def usd(aNumber):
         return format_currency(aNumber/100, "USD", locale="en_US")
 
     def totalVolumeCredits():
         result = 0
         for perf in data['performances']:
-            # add volume credits
-            result += volumeCreditsFor(perf)
+            result += perf['volumeCredits']
         return result
 
     def totalAmount():
@@ -61,10 +53,18 @@ def statement(invoice, plays):
             raise RuntimeError(f"unknown type: {aPerformance['play']['type']}")
         return result
 
+    def volumeCreditsFor(aPerformance):
+        result = 0
+        result += max(aPerformance['audience'] - 30, 0)
+        if "comedy" == aPerformance['play']['type']:
+            result += math.floor(aPerformance['audience'] / 5)
+        return result
+
     def enrichPerformance(aPerformance):
         result = copy.deepcopy(aPerformance)
         result['play'] = playFor(result)
         result['amount'] = amountFor(result)
+        result['volumeCredits'] = volumeCreditsFor(result)
         return result
 
     statement = {}
