@@ -8,19 +8,19 @@ def statement(invoice, plays):
     def amountFor(aPerformance, play):
         """Calculate amount for the given performance"""
         result = 0
-        if play['type'] == "tragedy":
+        if playFor(aPerformance)['type'] == "tragedy":
             result = 40000
             if aPerformance['audience'] > 30:
                 result += 1000 * (aPerformance['audience'] - 30)
         
-        elif play['type'] == "comedy":
+        elif playFor(aPerformance)['type'] == "comedy":
             result = 30000
             if aPerformance['audience'] > 20:
                 result += 10000 + 500 * (aPerformance['audience'] - 20)
             result += 300 * aPerformance['audience']
         
         else:
-            raise RuntimeError(f"unknown type: {play['type']}")
+            raise RuntimeError(f"unknown type: {playFor(aPerformance)['type']}")
         return result
 
     def playFor(aPerformance):
