@@ -23,12 +23,15 @@ def statement(invoice, plays):
             raise RuntimeError(f"unknown type: {play['type']}")
         return result
 
+    def playFor(aPerformance):
+        return plays[aPerformance['playID']]
+
     totalAmount = 0
     volumeCredits = 0
     result = f"Statement for {invoice['customer']}\n"
 
     for perf in invoice['performances']:
-        play = plays[perf['playID']]
+        play = playFor(perf)
         thisAmount = amountFor(perf, play)
 
         # add volume credits
