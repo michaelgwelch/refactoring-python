@@ -31,8 +31,6 @@ def statement(invoice, plays):
     result = f"Statement for {invoice['customer']}\n"
 
     for perf in invoice['performances']:
-        thisAmount = amountFor(perf)
-
         # add volume credits
         volumeCredits += max(perf['audience'] - 30, 0)
         # add extra credit for every ten comedy attendees
@@ -40,8 +38,8 @@ def statement(invoice, plays):
             volumeCredits += math.floor(perf['audience'] / 5)
 
         # print line for this order
-        result += f"  {playFor(perf)['name']}: {format_currency(thisAmount/100, 'USD', locale='en_US')} ({perf['audience']} seats)\n"
-        totalAmount += thisAmount
+        result += f"  {playFor(perf)['name']}: {format_currency(amountFor(perf)/100, 'USD', locale='en_US')} ({perf['audience']} seats)\n"
+        totalAmount += amountFor(perf)
 
     result += f"Amount owed is {format_currency(totalAmount/100, 'USD', locale='en_US')}\n"
     result += f"You earned {volumeCredits} credits\n"
