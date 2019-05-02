@@ -38,9 +38,9 @@ def renderHtml(data):
         result += f"  <tr><td>{perf['play']['name']}</td><td>{perf['audience']}</td>"
         result += f"<td>{usd(perf['amount'])}</td></tr>\n"
 
-    result += "</table>\n";
-    result += f"<p>Amount owed is <em>{usd(data['totalAmount'])}</em></p>\n";
-    result += f"<p>You earned <em>{data['totalVolumeCredits']}</em> credits</p>\n";
+    result += "</table>\n"
+    result += f"<p>Amount owed is <em>{usd(data['totalAmount'])}</em></p>\n"
+    result += f"<p>You earned <em>{data['totalVolumeCredits']}</em> credits</p>\n"
     return result
 
 def htmlStatment(invoice, plays):

@@ -33,6 +33,7 @@ def createStatementData(invoice, plays):
         return result
 
     def enrichPerformance(aPerformance):
+        calculator = PerformanceCalculator(aPerformance)
         result = copy.deepcopy(aPerformance)
         result['play'] = playFor(result)
         result['amount'] = amountFor(result)
@@ -53,3 +54,8 @@ def createStatementData(invoice, plays):
     result['totalAmount'] = totalAmount(result)
     result['totalVolumeCredits'] = totalVolumeCredits(result)
     return result
+
+
+class PerformanceCalculator:
+    def __init__(self, aPerformance):
+        self.performance = aPerformance
