@@ -2,12 +2,13 @@ import json
 from createStatement import createStatementData
 from babel.numbers import format_currency
 
+def usd(aNumber):
+    return format_currency(aNumber/100, "USD", locale="en_US")
+
 
 def renderPlainText(data):
     """Render a statement in plain text and return the value"""
 
-    def usd(aNumber):
-        return format_currency(aNumber/100, "USD", locale="en_US")
 
     result = f"Statement for {data['customer']}\n"
 
