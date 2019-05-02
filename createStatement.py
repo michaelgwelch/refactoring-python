@@ -6,16 +6,13 @@ import math
 def createStatementData(invoice, plays):
     def playFor(aPerformance):
         return plays[aPerformance['playID']]
-    
-    def volumeCreditsFor(aPerformance):
-        return PerformanceCalculator(aPerformance, playFor(aPerformance)).volumeCredits
 
     def enrichPerformance(aPerformance):
         calculator = PerformanceCalculator(aPerformance, playFor(aPerformance))
         result = copy.deepcopy(aPerformance)
         result['play'] = calculator.play
         result['amount'] = calculator.amount
-        result['volumeCredits'] = volumeCreditsFor(result)
+        result['volumeCredits'] = calculator.volumeCredits
         return result
 
     def totalVolumeCredits(data):
