@@ -1,6 +1,7 @@
 import copy
 import functools
 import math
+from abc import ABC, abstractmethod
 
 
 def createStatementData(invoice, plays):
@@ -31,25 +32,15 @@ def createStatementData(invoice, plays):
     return result
 
 
-class PerformanceCalculator:
+class PerformanceCalculator(ABC):
     def __init__(self, aPerformance, aPlay):
         self.performance = aPerformance
         self.play = aPlay
 
-    def get_amount(self):
-        """Calculate amount for the given performance"""
-
-        if self.play['type'] == "tragedy":
-            raise RuntimeError("Use TragedyCalculator")
-        
-        elif self.play['type'] == "comedy":
-            raise RuntimeError("Use ComedyCalculator")
-        
-        else:
-            raise RuntimeError(f"unknown type: {self.play['type']}")
-
-
-    amount = property(get_amount)
+    @property
+    @abstractmethod
+    def amount(self):
+        pass
 
     def get_volumeCredits(self):
         result = 0
@@ -73,23 +64,22 @@ class TragedyCalculator(PerformanceCalculator):
     def __init__(self, aPerformance, aPlay):
         super().__init__(aPerformance, aPlay)
 
-    def get_amount(self):
+    @property
+    def amount(self):
         result = 40000
         if self.performance['audience'] > 30:
             result += 1000 * (self.performance['audience'] - 30)
         return result
 
-    amount = property(get_amount)     
-
 class ComedyCalculator(PerformanceCalculator):
     def __init__(self, aPerformance, aPlay):
         super().__init__(aPerformance, aPlay)
 
-    def get_amount(self):
+    @property
+    def amount(self):
         result = 30000
         if self.performance['audience'] > 20:
             result += 10000 + 500 * (self.performance['audience'] - 20)
         result += 300 * self.performance['audience']
         return result
 
-    amount = property(get_amount)
