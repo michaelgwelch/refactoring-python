@@ -42,14 +42,9 @@ class PerformanceCalculator(ABC):
     def amount(self):
         pass
 
-    def get_volumeCredits(self):
-        result = 0
-        result += max(self.performance['audience'] - 30, 0)
-        if "comedy" == self.play['type']:
-            result += math.floor(self.performance['audience'] / 5)
-        return result
-
-    volumeCredits = property(get_volumeCredits)
+    @property
+    def volumeCredits(self):
+        return max(self.performance['audience'] - 30, 0)
 
     @staticmethod
     def create(aPerformance, aPlay):
@@ -82,4 +77,8 @@ class ComedyCalculator(PerformanceCalculator):
             result += 10000 + 500 * (self.performance['audience'] - 20)
         result += 300 * self.performance['audience']
         return result
+
+    @property
+    def volumeCredits(self):
+        return super().volumeCredits + math.floor(self.performance['audience'] / 5)
 
