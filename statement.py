@@ -5,7 +5,7 @@ import functools
 import operator
 from babel.numbers import format_currency
 
-def renderPlainText(data, plays):
+def renderPlainText(data):
     """Render a statement in plain text and return the value"""
 
     def usd(aNumber):
@@ -21,7 +21,7 @@ def renderPlainText(data, plays):
     result += f"You earned {data['totalVolumeCredits']} credits\n"
     return result
 
-def statement(invoice, plays):
+def createStatementData(invoice, plays):
     def playFor(aPerformance):
         return plays[aPerformance['playID']]
     
@@ -70,12 +70,16 @@ def statement(invoice, plays):
     statementData['performances'] = list(map(enrichPerformance, invoice['performances']))
     statementData['totalAmount'] = totalAmount(statementData)
     statementData['totalVolumeCredits'] = totalVolumeCredits(statementData)
-    return renderPlainText(statementData, plays)
+    return statementData
+
+def statement(invoice, plays):
+    return renderPlainText(createStatementData(invoice, plays))
 
 with open("plays.json", "r") as plays_file:
     plays = json.load(plays_file)
 
 with open("invoices.json", "r") as invoices_file:
     invoices = json.load(invoices_file)
+
 
 print(statement(invoices[0], plays))
