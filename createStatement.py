@@ -8,7 +8,7 @@ def createStatementData(invoice, plays):
         return plays[aPerformance['playID']]
 
     def enrichPerformance(aPerformance):
-        calculator = PerformanceCalculator(aPerformance, playFor(aPerformance))
+        calculator = PerformanceCalculator.create(aPerformance, playFor(aPerformance))
         result = copy.deepcopy(aPerformance)
         result['play'] = calculator.play
         result['amount'] = calculator.amount
@@ -64,3 +64,7 @@ class PerformanceCalculator:
         return result
 
     volumeCredits = property(get_volumeCredits)
+
+    @staticmethod
+    def create(aPerformance, aPlay):
+        return PerformanceCalculator(aPerformance, aPlay)
