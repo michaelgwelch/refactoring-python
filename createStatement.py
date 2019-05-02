@@ -67,4 +67,17 @@ class PerformanceCalculator:
 
     @staticmethod
     def create(aPerformance, aPlay):
-        return PerformanceCalculator(aPerformance, aPlay)
+        if aPlay['type'] == "tragedy":
+            return TragedyCalculator(aPerformance, aPlay)
+        elif aPlay['type'] == "comedy":
+            return ComedyCalculator(aPerformance, aPlay)
+        else:
+            raise RuntimeError(f"unknown type: {aPlay['type']}")
+
+class TragedyCalculator(PerformanceCalculator):
+    def __init__(self, aPerformance, aPlay):
+        super().__init__(aPerformance, aPlay)
+
+class ComedyCalculator(PerformanceCalculator):
+    def __init__(self, aPerformance, aPlay):
+        super().__init__(aPerformance, aPlay)
