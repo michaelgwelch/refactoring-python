@@ -65,12 +65,12 @@ def createStatementData(invoice, plays):
         return functools.reduce(
             lambda total, p: total + p['amount'], data['performances'], 0)
 
-    statementData = {}
-    statementData['customer'] = invoice['customer']
-    statementData['performances'] = list(map(enrichPerformance, invoice['performances']))
-    statementData['totalAmount'] = totalAmount(statementData)
-    statementData['totalVolumeCredits'] = totalVolumeCredits(statementData)
-    return statementData
+    result = {}
+    result['customer'] = invoice['customer']
+    result['performances'] = list(map(enrichPerformance, invoice['performances']))
+    result['totalAmount'] = totalAmount(result)
+    result['totalVolumeCredits'] = totalVolumeCredits(result)
+    return result
 
 def statement(invoice, plays):
     return renderPlainText(createStatementData(invoice, plays))
