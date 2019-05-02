@@ -8,11 +8,7 @@ def createStatementData(invoice, plays):
         return plays[aPerformance['playID']]
     
     def volumeCreditsFor(aPerformance):
-        result = 0
-        result += max(aPerformance['audience'] - 30, 0)
-        if "comedy" == aPerformance['play']['type']:
-            result += math.floor(aPerformance['audience'] / 5)
-        return result
+        return PerformanceCalculator(aPerformance, playFor(aPerformance)).volumeCredits
 
     def enrichPerformance(aPerformance):
         calculator = PerformanceCalculator(aPerformance, playFor(aPerformance))
@@ -62,3 +58,12 @@ class PerformanceCalculator:
         return result
 
     amount = property(get_amount)
+
+    def get_volumeCredits(self):
+        result = 0
+        result += max(self.performance['audience'] - 30, 0)
+        if "comedy" == self.play['type']:
+            result += math.floor(self.performance['audience'] / 5)
+        return result
+
+    volumeCredits = property(get_volumeCredits)
