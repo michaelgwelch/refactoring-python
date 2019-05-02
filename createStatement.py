@@ -7,9 +7,6 @@ def createStatementData(invoice, plays):
     def playFor(aPerformance):
         return plays[aPerformance['playID']]
     
-    def amountFor(aPerformance):
-        return PerformanceCalculator(aPerformance, playFor(aPerformance)).amount
-
     def volumeCreditsFor(aPerformance):
         result = 0
         result += max(aPerformance['audience'] - 30, 0)
@@ -21,7 +18,7 @@ def createStatementData(invoice, plays):
         calculator = PerformanceCalculator(aPerformance, playFor(aPerformance))
         result = copy.deepcopy(aPerformance)
         result['play'] = calculator.play
-        result['amount'] = amountFor(result)
+        result['amount'] = calculator.amount
         result['volumeCredits'] = volumeCreditsFor(result)
         return result
 
@@ -49,19 +46,19 @@ class PerformanceCalculator:
     def get_amount(self):
         """Calculate amount for the given performance"""
         result = 0
-        if self.performance['play']['type'] == "tragedy":
+        if self.play['type'] == "tragedy":
             result = 40000
             if self.performance['audience'] > 30:
                 result += 1000 * (self.performance['audience'] - 30)
         
-        elif self.performance['play']['type'] == "comedy":
+        elif self.play['type'] == "comedy":
             result = 30000
             if self.performance['audience'] > 20:
                 result += 10000 + 500 * (self.performance['audience'] - 20)
             result += 300 * self.performance['audience']
         
         else:
-            raise RuntimeError(f"unknown type: {self.performance['play']['type']}")
+            raise RuntimeError(f"unknown type: {self.play['type']}")
         return result
 
     amount = property(get_amount)
