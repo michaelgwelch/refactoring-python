@@ -40,9 +40,7 @@ class PerformanceCalculator:
         """Calculate amount for the given performance"""
         result = 0
         if self.play['type'] == "tragedy":
-            result = 40000
-            if self.performance['audience'] > 30:
-                result += 1000 * (self.performance['audience'] - 30)
+            raise RuntimeError("Use TragedyCalculator")
         
         elif self.play['type'] == "comedy":
             result = 30000
@@ -77,6 +75,14 @@ class PerformanceCalculator:
 class TragedyCalculator(PerformanceCalculator):
     def __init__(self, aPerformance, aPlay):
         super().__init__(aPerformance, aPlay)
+
+    def get_amount(self):
+        result = 40000
+        if self.performance['audience'] > 30:
+            result += 1000 * (self.performance['audience'] - 30)
+        return result
+
+    amount = property(get_amount)     
 
 class ComedyCalculator(PerformanceCalculator):
     def __init__(self, aPerformance, aPlay):
