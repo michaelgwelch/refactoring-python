@@ -46,4 +46,4 @@ def renderHtml(data):
 def htmlStatment(invoice, plays):
     return renderHtml(createStatementData(invoice, plays))
 
-print(htmlStatment(invoices[0], plays))
+print(statement(invoices[0], plays))

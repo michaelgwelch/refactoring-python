@@ -8,22 +8,7 @@ def createStatementData(invoice, plays):
         return plays[aPerformance['playID']]
     
     def amountFor(aPerformance):
-        """Calculate amount for the given performance"""
-        result = 0
-        if aPerformance['play']['type'] == "tragedy":
-            result = 40000
-            if aPerformance['audience'] > 30:
-                result += 1000 * (aPerformance['audience'] - 30)
-        
-        elif aPerformance['play']['type'] == "comedy":
-            result = 30000
-            if aPerformance['audience'] > 20:
-                result += 10000 + 500 * (aPerformance['audience'] - 20)
-            result += 300 * aPerformance['audience']
-        
-        else:
-            raise RuntimeError(f"unknown type: {aPerformance['play']['type']}")
-        return result
+        return PerformanceCalculator(aPerformance, playFor(aPerformance)).amount
 
     def volumeCreditsFor(aPerformance):
         result = 0
@@ -60,3 +45,23 @@ class PerformanceCalculator:
     def __init__(self, aPerformance, aPlay):
         self.performance = aPerformance
         self.play = aPlay
+
+    def get_amount(self):
+        """Calculate amount for the given performance"""
+        result = 0
+        if self.performance['play']['type'] == "tragedy":
+            result = 40000
+            if self.performance['audience'] > 30:
+                result += 1000 * (self.performance['audience'] - 30)
+        
+        elif self.performance['play']['type'] == "comedy":
+            result = 30000
+            if self.performance['audience'] > 20:
+                result += 10000 + 500 * (self.performance['audience'] - 20)
+            result += 300 * self.performance['audience']
+        
+        else:
+            raise RuntimeError(f"unknown type: {self.performance['play']['type']}")
+        return result
+
+    amount = property(get_amount)
