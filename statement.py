@@ -1,6 +1,7 @@
 import json
 from createStatement import createStatementData
 from babel.numbers import format_currency
+from performance import Performance
 
 def usd(aNumber):
     return format_currency(aNumber/100, "USD", locale="en_US")
@@ -27,7 +28,7 @@ with open("plays.json", "r") as plays_file:
     plays = json.load(plays_file)
 
 with open("invoices.json", "r") as invoices_file:
-    invoices = json.load(invoices_file)
+    invoices = json.load(invoices_file, object_hook=Performance.decode)
 
 
 def renderHtml(data):
