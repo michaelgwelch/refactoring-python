@@ -15,7 +15,7 @@ def renderPlainText(data):
 
     for perf in data['performances']:
         # print line for this order
-        result += f"  {perf['play']['name']}: {usd(perf['amount'])} ({perf['audience']} seats)\n"
+        result += f"  {perf.play['name']}: {usd(perf.amount)} ({perf.audience} seats)\n"
 
     result += f"Amount owed is {usd(data['totalAmount'])}\n"
     result += f"You earned {data['totalVolumeCredits']} credits\n"
@@ -36,8 +36,8 @@ def renderHtml(data):
     result += "<table>\n"
     result += "<tr><th>play</th><th>seats</th><th>cost</th></tr>"
     for perf in data['performances']:
-        result += f"  <tr><td>{perf['play']['name']}</td><td>{perf['audience']}</td>"
-        result += f"<td>{usd(perf['amount'])}</td></tr>\n"
+        result += f"  <tr><td>{perf.play['name']}</td><td>{perf.audience}</td>"
+        result += f"<td>{usd(perf.amount)}</td></tr>\n"
 
     result += "</table>\n"
     result += f"<p>Amount owed is <em>{usd(data['totalAmount'])}</em></p>\n"
