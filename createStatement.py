@@ -2,6 +2,7 @@ import copy
 import functools
 import math
 from abc import ABC, abstractmethod
+from invoice import Invoice
 
 
 def createStatementData(invoice, plays):
@@ -25,8 +26,8 @@ def createStatementData(invoice, plays):
             lambda total, p: total + p.amount, data['performances'], 0)
 
     result = {}
-    result['customer'] = invoice['customer']
-    result['performances'] = list(map(enrichPerformance, invoice['performances']))
+    result['customer'] = invoice.customer
+    result['performances'] = list(map(enrichPerformance, invoice.performances))
     result['totalAmount'] = totalAmount(result)
     result['totalVolumeCredits'] = totalVolumeCredits(result)
     return result

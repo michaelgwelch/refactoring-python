@@ -5,12 +5,6 @@ class Invoice:
         self.customer = aCustomer
         self.performances = thePerformances
 
-    def __getitem__(self, key):
-        if key == "customer":
-            return self.customer
-        if key == "performances":
-            return self.performances
-
     @staticmethod
     def decode(dct):
         if ("customer" in dct) & ("performances" in dct):
