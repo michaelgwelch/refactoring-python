@@ -49,12 +49,12 @@ class PerformanceCalculator(ABC):
 
     @staticmethod
     def create(aPerformance, aPlay):
-        if aPlay['type'] == "tragedy":
+        if aPlay.type == "tragedy":
             return TragedyCalculator(aPerformance, aPlay)
-        elif aPlay['type'] == "comedy":
+        elif aPlay.type == "comedy":
             return ComedyCalculator(aPerformance, aPlay)
         else:
-            raise RuntimeError(f"unknown type: {aPlay['type']}")
+            raise RuntimeError(f"unknown type: {aPlay.type}")
 
 class TragedyCalculator(PerformanceCalculator):
     def __init__(self, aPerformance, aPlay):
