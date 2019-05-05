@@ -14,6 +14,7 @@ As the author states (*emphasis mine*):
 |    2 |  441 | [Starting Point][sp-c]     | [statement.py][sp-p]  |                            |
 |    7 |  547 | [Extract amountFor][eaf-c] | [statement.py][eaf-p] | [statement.py diff][eaf-d] |
 |    9 |  595 | [Rename thisAmount][rta-c] | [statement.py][rta-p] | [statement.py diff][rta-d] |
+|   10 |  607 | [Rename perf][rp-c]        | [statement.py][rp-p]  | [statement.py diff][rp-d]  |
 
 
 Comments
@@ -33,3 +34,6 @@ Comments
 [rta-c]: https://github.com/michaelgwelch/refactoring-python/tree/5007c9f261fb9e1249a6bbe8cfda133c6761c0ec
 [rta-p]: https://github.com/michaelgwelch/refactoring-python/blob/5007c9f261fb9e1249a6bbe8cfda133c6761c0ec/statement.py
 [rta-d]: https://github.com/michaelgwelch/refactoring-python/commit/5007c9f261fb9e1249a6bbe8cfda133c6761c0ec#diff-80171273663b5e689d7867585fc1d028
+[rp-c]: https://github.com/michaelgwelch/refactoring-python/tree/b3c1aea1a4c3244221302d6afa76ba77385ed27b
+[rp-p]: https://github.com/michaelgwelch/refactoring-python/blob/b3c1aea1a4c3244221302d6afa76ba77385ed27b/statement.py
+[rp-d]: https://github.com/michaelgwelch/refactoring-python/commit/b3c1aea1a4c3244221302d6afa76ba77385ed27b#diff-80171273663b5e689d7867585fc1d028
