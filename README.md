@@ -16,6 +16,7 @@ As the author states (*emphasis mine*):
 |    9 |  595 | [Rename thisAmount][rta-c] | [statement.py][rta-p] | [statement.py diff][rta-d] |
 |   10 |  607 | [Rename perf][rp-c]        | [statement.py][rp-p]  | [statement.py diff][rp-d]  |
 |   11 |  634 | [Extract playFor][epf-c]   | [statement.py][epf-p] | [statement.py diff][epf-d] |
+|   11 |  651 | [Inline play var][ipv-c]   | [statement.py][ipv-p] | [statement.py diff][ipv-d] |
 
 
 Comments
@@ -41,3 +42,6 @@ Comments
 [epf-c]: https://github.com/michaelgwelch/refactoring-python/tree/f1fa6ed4fdbe7f37afe1105d1351400d7c9265fe
 [epf-p]: https://github.com/michaelgwelch/refactoring-python/blob/f1fa6ed4fdbe7f37afe1105d1351400d7c9265fe/statement.py
 [epf-d]: https://github.com/michaelgwelch/refactoring-python/commit/f1fa6ed4fdbe7f37afe1105d1351400d7c9265fe#diff-80171273663b5e689d7867585fc1d028
+[ipv-c]: https://github.com/michaelgwelch/refactoring-python/tree/9d62089ccdf495287e12c95bec44a3af3c984c04
+[ipv-p]: https://github.com/michaelgwelch/refactoring-python/blob/9d62089ccdf495287e12c95bec44a3af3c984c04/statement.py
+[ipv-d]: https://github.com/michaelgwelch/refactoring-python/commit/9d62089ccdf495287e12c95bec44a3af3c984c04#diff-80171273663b5e689d7867585fc1d028
