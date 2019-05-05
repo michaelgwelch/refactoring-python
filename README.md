@@ -18,6 +18,7 @@ As the author states (*emphasis mine*):
 |   11 |  634 | [Extract playFor][epf-c]   | [statement.py][epf-p] | [statement.py diff][epf-d] |
 |   11 |  651 | [Inline play var][ipv-c]   | [statement.py][ipv-p] | [statement.py diff][ipv-d] |
 |   12 |  668 | [Remove use of play][rup-c] | [statement.py][rup-p] | [statement.py diff][rup-d] |
+|   13 |  678 | [Change amountFor][caf-c]  | [statement.py][caf-p] | [statement.py diff][caf-d] |
 
 
 Comments
@@ -49,3 +50,6 @@ Comments
 [rup-c]: https://github.com/michaelgwelch/refactoring-python/tree/f4a08a4cdf223807a5949a8aed038ec5db37a76e
 [rup-p]: https://github.com/michaelgwelch/refactoring-python/blob/f4a08a4cdf223807a5949a8aed038ec5db37a76e/statement.py
 [rup-d]: https://github.com/michaelgwelch/refactoring-python/commit/f4a08a4cdf223807a5949a8aed038ec5db37a76e#diff-80171273663b5e689d7867585fc1d028
+[caf-c]: https://github.com/michaelgwelch/refactoring-python/tree/e800b4549d74e0e584ed9b609439a1c68a7104f4
+[caf-p]: https://github.com/michaelgwelch/refactoring-python/blob/e800b4549d74e0e584ed9b609439a1c68a7104f4/statement.py
+[caf-d]: https://github.com/michaelgwelch/refactoring-python/commit/e800b4549d74e0e584ed9b609439a1c68a7104f4#diff-80171273663b5e689d7867585fc1d028
