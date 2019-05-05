@@ -17,6 +17,7 @@ As the author states (*emphasis mine*):
 |   10 |  607 | [Rename perf][rp-c]        | [statement.py][rp-p]  | [statement.py diff][rp-d]  |
 |   11 |  634 | [Extract playFor][epf-c]   | [statement.py][epf-p] | [statement.py diff][epf-d] |
 |   11 |  651 | [Inline play var][ipv-c]   | [statement.py][ipv-p] | [statement.py diff][ipv-d] |
+|   12 |  668 | [Remove use of play][rup-c] | [statement.py][rup-p] | [statement.py diff][rup-d] |
 
 
 Comments
@@ -45,3 +46,6 @@ Comments
 [ipv-c]: https://github.com/michaelgwelch/refactoring-python/tree/9d62089ccdf495287e12c95bec44a3af3c984c04
 [ipv-p]: https://github.com/michaelgwelch/refactoring-python/blob/9d62089ccdf495287e12c95bec44a3af3c984c04/statement.py
 [ipv-d]: https://github.com/michaelgwelch/refactoring-python/commit/9d62089ccdf495287e12c95bec44a3af3c984c04#diff-80171273663b5e689d7867585fc1d028
+[rup-c]: https://github.com/michaelgwelch/refactoring-python/tree/f4a08a4cdf223807a5949a8aed038ec5db37a76e
+[rup-p]: https://github.com/michaelgwelch/refactoring-python/blob/f4a08a4cdf223807a5949a8aed038ec5db37a76e/statement.py
+[rup-d]: https://github.com/michaelgwelch/refactoring-python/commit/f4a08a4cdf223807a5949a8aed038ec5db37a76e#diff-80171273663b5e689d7867585fc1d028
