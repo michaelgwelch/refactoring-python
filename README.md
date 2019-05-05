@@ -19,6 +19,7 @@ As the author states (*emphasis mine*):
 |   11 |  651 | [Inline play var][ipv-c]   | [statement.py][ipv-p] | [statement.py diff][ipv-d] |
 |   12 |  668 | [Remove use of play][rup-c] | [statement.py][rup-p] | [statement.py diff][rup-d] |
 |   13 |  678 | [Change amountFor][caf-c]  | [statement.py][caf-p] | [statement.py diff][caf-d] |
+|   14 |  707 | [Inline thisAmount][ita-c]  | [statement.py][ita-p] | [statement.py diff][ita-d] |
 
 
 Comments
@@ -53,3 +54,6 @@ Comments
 [caf-c]: https://github.com/michaelgwelch/refactoring-python/tree/e800b4549d74e0e584ed9b609439a1c68a7104f4
 [caf-p]: https://github.com/michaelgwelch/refactoring-python/blob/e800b4549d74e0e584ed9b609439a1c68a7104f4/statement.py
 [caf-d]: https://github.com/michaelgwelch/refactoring-python/commit/e800b4549d74e0e584ed9b609439a1c68a7104f4#diff-80171273663b5e689d7867585fc1d028
+[ita-c]: https://github.com/michaelgwelch/refactoring-python/tree/207be46aaaa9d35781e94963608f0cd31e9e6e5f
+[ita-p]: https://github.com/michaelgwelch/refactoring-python/blob/207be46aaaa9d35781e94963608f0cd31e9e6e5f/statement.py
+[ita-d]: https://github.com/michaelgwelch/refactoring-python/commit/207be46aaaa9d35781e94963608f0cd31e9e6e5f#diff-80171273663b5e689d7867585fc1d028
